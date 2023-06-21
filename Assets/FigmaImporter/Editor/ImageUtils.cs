@@ -106,13 +106,26 @@ namespace FigmaImporter.Editor
         public static void SetMask(Node node, GameObject nodeGo)
         {
             if (!node.clipsContent)
+            {
                 return;
+            }
+
             if (node.fills.Length == 0)
-                nodeGo.AddComponent<RectMask2D>();
+            {
+                if (nodeGo.GetComponent<RectMask2D>() == null)
+                {
+                    nodeGo.AddComponent<RectMask2D>();
+                }
+            }
             else
-                nodeGo.AddComponent<Mask>();
+            {
+                if (nodeGo.GetComponent<Mask>() == null)
+                {
+                    nodeGo.AddComponent<Mask>();
+                }
+            }
         }
-        
+
         public static async Task RenderNodeAndApply(Node node, GameObject nodeGo, FigmaImporter importer)
         {
             FigmaNodesProgressInfo.CurrentInfo = "Loading image";
