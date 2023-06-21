@@ -113,7 +113,11 @@ namespace FigmaImporter.Editor
                     await Task.WhenAll(node.children.Select(x => GenerateNode(x, nodeGo, nodeTreeElements))); //todo: Need to fix the progress bar because of simultaneous nodes generation.
                     break;
                 case ActionType.Transform:
-                    
+                    if (node.children == null)
+                    {
+                        return;
+                    }
+                    await Task.WhenAll(node.children.Select(x => GenerateNode(x, nodeGo, nodeTreeElements)));
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

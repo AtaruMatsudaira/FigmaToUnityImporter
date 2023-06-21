@@ -23,7 +23,7 @@ namespace FigmaImporter.Editor
         {
             foreach (var node in nodes)
             {
-                nodesTreeElements.FirstOrDefault(x => x.figmaId == node.id).actionType = ActionType.Transform;
+                nodesTreeElements.First(x => x.figmaId == node.id).actionType = ActionType.Transform;
                 if (node.children != null)
                 {
                     AnalyzeTransformMode(node.children, nodesTreeElements);
